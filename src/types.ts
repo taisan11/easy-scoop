@@ -54,3 +54,54 @@ export interface builders {
 export type AppValue = apps[keyof apps];
 
 export type BuilderValue = builders[keyof builders];
+
+// GitHub Release API 型 (必要最小限 + assets)
+export interface GitHubReleaseAsset {
+    name: string;
+    browser_download_url: string;
+    size: number;
+    content_type?: string;
+}
+
+export interface GitHubReleaseInfo {
+    id: number;
+    tag_name: string;
+    name: string;
+    body: string;
+    draft: boolean;
+    prerelease: boolean;
+    published_at: string;
+    assets: GitHubReleaseAsset[];
+}
+
+// 永続化予定のアプリマニフェストラッパ (WIP: 保存形式は後で確定)
+export interface StoredManifest {
+    name: string;
+    manifest: v.InferOutput<typeof scoop_app_manifest>;
+    created_at: string; // ISO8601
+    updated_at: string; // ISO8601
+}
+
+export interface ManifestIndexItem {
+    name: string;
+    version: string;
+    updated_at: string;
+}
+
+// API レスポンス汎用
+export interface ApiErrorResponse {
+    error: string;
+    detail?: unknown;
+}
+
+export interface ApiSuccessResponse<T> {
+    success: true;
+    data: T;
+}
+
+// バージョン比較結果
+export interface UpdateCheckResult {
+    current: string;
+    latest: string;
+    hasUpdate: boolean;
+}

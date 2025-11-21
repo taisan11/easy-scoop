@@ -1,0 +1,16 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "easy-scoop",
+	"main": "src/index.tsx",
+	"compatibility_date": "2025-11-03",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "easy-scoop",
+			"database_id": "0a09a4cb-9e2e-448c-b71a-80961e4fa8ee"
+		}
+	],
+	"triggers": {
+		"crons": ["0 0 * * *"]
+	}
+}
